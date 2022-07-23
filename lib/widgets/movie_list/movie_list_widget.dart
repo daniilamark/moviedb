@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:moviedb/resources/resources.dart';
 
 class Movie {
+  final int id;
   final String imageName;
   final String title;
   final String time;
   final String description;
 
   Movie({
+    required this.id,
     required this.imageName,
     required this.title,
     required this.time,
@@ -25,6 +27,7 @@ class MovieListWidget extends StatefulWidget {
 class _MovieListWidgetState extends State<MovieListWidget> {
   final _movies = [
     Movie(
+      id: 1,
       imageName: AppImages.rickandmorty,
       title: 'Рик и морти',
       time: 'April 7, 2001',
@@ -32,6 +35,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'This is package is an independent library that is not linked to your',
     ),
     Movie(
+      id: 2,
       imageName: AppImages.rickandmorty,
       title: 'Восход',
       time: 'April 7, 2001',
@@ -39,6 +43,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'This is package is an independent library that is not linked to your',
     ),
     Movie(
+      id: 3,
       imageName: AppImages.rickandmorty,
       title: 'Закат',
       time: 'April 7, 2001',
@@ -46,6 +51,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'This is package is an independent library that is not linked to your',
     ),
     Movie(
+      id: 4,
       imageName: AppImages.rickandmorty,
       title: 'Мир',
       time: 'April 7, 2001',
@@ -53,6 +59,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'This is package is an independent library that is not linked to your',
     ),
     Movie(
+      id: 5,
       imageName: AppImages.rickandmorty,
       title: 'Дружба',
       time: 'April 7, 2001',
@@ -60,6 +67,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'This is package is an independent library that is not linked to your',
     ),
     Movie(
+      id: 6,
       imageName: AppImages.rickandmorty,
       title: 'Жвачка',
       time: 'April 7, 2001',
@@ -67,6 +75,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'This is package is an independent library that is not linked to your',
     ),
     Movie(
+      id: 7,
       imageName: AppImages.rickandmorty,
       title: 'Кино',
       time: 'April 7, 2001',
@@ -88,6 +97,14 @@ class _MovieListWidgetState extends State<MovieListWidget> {
       _filteredMovies = _movies;
     }
     setState(() {});
+  }
+
+  void _onMovieTap(int index) {
+    final id = _movies[index].id;
+    Navigator.of(context).pushNamed(
+      '/main_screen/movie_details',
+      arguments: id,
+    );
   }
 
   @override
@@ -165,10 +182,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(10),
                     // ignore: avoid_print
-                    onTap: () {
-                      // ignore: avoid_print
-                      print("ssssssss");
-                    },
+                    onTap: () => _onMovieTap(index),
                   ),
                 ),
               ],
